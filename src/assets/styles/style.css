@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@300;400;500;600;700;800;900&family=Righteous&display=swap');
+
+body {
+    background-color: #FB6B6B;
+    font-family: Recursive, sans-serif;
+}
+
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-family: Righteous, sans-serif;
+    font-size: 36px;
+    color: white;
+}
+
+.home h1 {
+    margin-top: 30px;
+}
+
+.home img {
+    width: 136px;
+    height: 161px;
+    margin-top: 150px;
+}
+
+.home button {
+    width: 246px;
+    height: 54px;
+    margin-top: 35px;
+    background-color: #fff;
+    color: #D70900;
+    font-size: 18px;
+    border: 1px solid #D70900;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    position: absolute;
+    bottom: 70px;
+    top: 0;
+    width: 100%;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.logo h1 {
+    margin: 0 20px;
+}
+
+.logo img {
+    width: 56px;
+    height: 60px;
+}
+
+.questions {
+    margin: 50px 0 85px;
+}
+
+.question-option {
+    width: 300px;
+    min-height: 60px;
+    margin-bottom: 25px;
+    background-color: #fff;
+    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.question-number {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+}
+
+.question-option ion-icon {
+    font-size: 30px;
+    color: #333;
+}
+
+.card {
+    width: 270px;
+    min-height: 52px;
+    margin-bottom: 25px;
+    background-color: #FFFFD4;
+    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    padding: 18px 15px 60px;
+    position: relative;
+}
+
+.card span {
+    font-size: 18px;
+    color: #333;
+}
+
+.card img {
+    width: 30px;
+    height: 20px;
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+}
+
+.user-answers {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    right: 15px;
+}
+
+.user-answers div {
+    width: 31%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.user-answers div:hover {
+    cursor: pointer;
+}
+
+.clickable:hover {
+    cursor: pointer;
+}
+
+.user-answers span {
+    color: #fff;
+    font-size: 12px;
+}
+
+.user-answers div:nth-child(1) {
+    background-color: #FF3030;
+}
+
+.user-answers div:nth-child(2) {
+    background-color: #FF922E;
+}
+
+.user-answers div:nth-child(3) {
+    background-color: #2FBE34;
+}
+
+.answered {
+    text-decoration-line: line-through;
+}
+
+.result {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70px;
+    background-color: #fff;
+    box-shadow: 0px -4px 6px 0px #0000000D;
+}

@@ -1,11 +1,12 @@
+import logo from "../assets/images/logo.png";
 
+export default function Home({ setInitGame }) {
 
-export default function Home() {
     return (
         <div className="home">
-            <img src='img/logo.png' alt='Logo' />
+            <img src={logo} alt='Logo' />
             <h1>ZapRecall</h1>
-            <button>Iniciar Recall!</button>
+            <button onClick={() => setInitGame(true)}>Iniciar Recall!</button>
         </div>
     );
 }
