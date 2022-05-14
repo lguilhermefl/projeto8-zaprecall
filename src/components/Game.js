@@ -32,7 +32,13 @@ function Result({ mistakes, minZaps, deckSize }) {
     );
 }
 
-export default function Game() {
+function ButtonRestart({ setInitGame }) {
+    return (
+        <button onClick={() => setInitGame(false)}>REINICIAR RECALL</button>
+    );
+}
+
+export default function Game({ setInitGame }) {
 
     const deckReact = 0;
 
@@ -97,6 +103,10 @@ export default function Game() {
                 }
                 <span>{iconByUserAnswer.length}/{decks[deckReact].length} CONCLUÍDOS</span>
                 <div className="icons-result">{iconByUserAnswer}</div>
+                {
+                    isAllAnswered(allAnswers, decks[deckReact]) &&
+                    <ButtonRestart setInitGame={setInitGame} />
+                }
             </div>
         </div>
     );

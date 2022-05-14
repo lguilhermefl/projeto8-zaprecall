@@ -12,7 +12,7 @@ export default function App() {
         <>
             { !initGame ?
                 <Home setInitGame={setInitGame} /> :
-                <Game />
+                <Game setInitGame={setInitGame} />
             }
         </>
     );
