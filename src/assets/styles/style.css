@@ -236,6 +236,7 @@ h1 {
 .button-init-disabled {
     background-color: #E8E8E8;
     color: #C0C0C0;
+    cursor: unset;
 }
 
 input, select {
