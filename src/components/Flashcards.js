@@ -13,7 +13,7 @@ function QuestionOptionAndQuestionAnswered({ id, showAnswered, setShowQuestion, 
 
     return (
         <>
-            { !showAnswered ?
+            {!showAnswered ?
                 <li className="question-option clickable" onClick={() => setShowQuestion(true)}>
                     <span className="question-number">Pergunta {id}</span>
                     <ion-icon name="play-outline"></ion-icon>
@@ -21,7 +21,7 @@ function QuestionOptionAndQuestionAnswered({ id, showAnswered, setShowQuestion, 
                 <li className="question-option">
                     <span className="question-number answered" style={styleAnswered}>
                         Pergunta {id}</span>
-                    { iconAnswered }
+                    {iconAnswered}
                 </li>
 
             }
@@ -32,10 +32,19 @@ function QuestionOptionAndQuestionAnswered({ id, showAnswered, setShowQuestion, 
 function QuestionAndAnswer({ question, answer, showAnswer, setShowAnswered, setShowQuestion,
     setShowAnswer, setIconAnswered, setStyleAnswered, setIconByUserAnswer, setAllAnswers,
     icons, styles }) {
-    
+
+    const setsOnClick = (userAnswer, answerStr) => {
+        setShowAnswered(true);
+        setShowQuestion(false);
+        setIconAnswered(icons[userAnswer]);
+        setStyleAnswered(styles[userAnswer]);
+        setIconByUserAnswer(iconByUser => [...iconByUser, icons[userAnswer]]);
+        setAllAnswers(allAnswer => [...allAnswer, answerStr]);
+    };
+
     return (
         <li className="card">
-            { !showAnswer ?
+            {!showAnswer ?
                 <>
                     <span>{question}</span>
                     <img className="clickable" src={arrow} alt="arrow" onClick={() =>
@@ -44,34 +53,13 @@ function QuestionAndAnswer({ question, answer, showAnswer, setShowAnswered, setS
                 <>
                     <span>{answer}</span>
                     <div className="user-answers">
-                        <div onClick={() => {
-                            setShowAnswered(true);
-                            setShowQuestion(false);
-                            setIconAnswered(icons[wrong]);
-                            setStyleAnswered(styles[wrong]);
-                            setIconByUserAnswer(iconByUser => [...iconByUser, icons[wrong]]);
-                            setAllAnswers(allAnswer => [...allAnswer, "Não lembrei"]);
-                            }}>
+                        <div onClick={() => setsOnClick(wrong, "Não lembrei")}>
                             <span>Não lembrei</span>
                         </div>
-                        <div onClick={() => {
-                            setShowAnswered(true);
-                            setShowQuestion(false);
-                            setIconAnswered(icons[almost]);
-                            setStyleAnswered(styles[almost]);
-                            setIconByUserAnswer(iconByUser => [...iconByUser, icons[almost]]);
-                            setAllAnswers(allAnswer => [...allAnswer, "Quase não lembrei"]);
-                            }}>
+                        <div onClick={() => setsOnClick(almost, "Quase não lembrei")}>
                             <span>Quase não lembrei</span>
                         </div>
-                        <div onClick={() => {
-                            setShowAnswered(true);
-                            setShowQuestion(false);
-                            setIconAnswered(icons[right]);
-                            setStyleAnswered(styles[right]);
-                            setIconByUserAnswer(iconByUser => [...iconByUser, icons[right]]);
-                            setAllAnswers(allAnswer => [...allAnswer, "Zap!"]);
-                            }}>
+                        <div onClick={() => setsOnClick(right, "Zap!")}>
                             <span>Zap!</span>
                         </div>
                     </div>
@@ -90,7 +78,7 @@ function Flashcard({ id, question, answer, setIconByUserAnswer, setAllAnswers })
     const [iconAnswered, setIconAnswered] = React.useState();
     const [styleAnswered, setStyleAnswered] = React.useState();
 
-    const styles = [{color: "#FF3030"}, {color: "#FF922E"}, {color: "#2FBE34"}]
+    const styles = [{ color: "#FF3030" }, { color: "#FF922E" }, { color: "#2FBE34" }]
 
     const icons = [
         <ion-icon key={id} name="close-circle-sharp" style={styles[wrong]}></ion-icon>,
@@ -100,15 +88,15 @@ function Flashcard({ id, question, answer, setIconByUserAnswer, setAllAnswers })
 
     return (
         <>
-            { !showQuestion ? 
+            {!showQuestion ?
                 <QuestionOptionAndQuestionAnswered id={id} showAnswered={showAnswered}
-                setShowQuestion={setShowQuestion} iconAnswered={iconAnswered}
-                styleAnswered={styleAnswered} /> :
+                    setShowQuestion={setShowQuestion} iconAnswered={iconAnswered}
+                    styleAnswered={styleAnswered} /> :
                 <QuestionAndAnswer question={question} answer={answer} showAnswer={showAnswer}
-                setShowAnswered={setShowAnswered} setShowQuestion={setShowQuestion}
-                setShowAnswer={setShowAnswer} setIconAnswered={setIconAnswered}
-                setStyleAnswered={setStyleAnswered} setIconByUserAnswer={setIconByUserAnswer}
-                setAllAnswers={setAllAnswers} icons={icons} styles={styles} />
+                    setShowAnswered={setShowAnswered} setShowQuestion={setShowQuestion}
+                    setShowAnswer={setShowAnswer} setIconAnswered={setIconAnswered}
+                    setStyleAnswered={setStyleAnswered} setIconByUserAnswer={setIconByUserAnswer}
+                    setAllAnswers={setAllAnswers} icons={icons} styles={styles} />
             }
         </>
     );
@@ -120,10 +108,10 @@ export default function Flashcards({ deck, setIconByUserAnswer, setAllAnswers })
     return (
         <div className="flashcards" >
             <ul>
-                { deck.sort(() => Math.random() - FIVE_DECIMALS).map((card, index) => 
-                    <Flashcard key={index} id={index + ONE} question={card.question} 
-                    answer={card.answer} setIconByUserAnswer={setIconByUserAnswer}
-                    setAllAnswers={setAllAnswers} />)
+                {deck.sort(() => Math.random() - FIVE_DECIMALS).map((card, index) =>
+                    <Flashcard key={index} id={index + ONE} question={card.question}
+                        answer={card.answer} setIconByUserAnswer={setIconByUserAnswer}
+                        setAllAnswers={setAllAnswers} />)
                 }
             </ul>
         </div>

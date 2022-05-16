@@ -30,10 +30,14 @@ h1 {
 .home button {
     width: 246px;
     height: 54px;
-    margin-top: 35px;
+    margin-top: 20px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.button-init {
     background-color: #fff;
     color: #D70900;
-    font-size: 18px;
     border: 1px solid #D70900;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
 }
@@ -222,7 +226,7 @@ h1 {
     display: flex;
 }
 
-button {
+.button-restart {
     width: 167px;
     height: 32px;
     border-radius: 5px;
@@ -232,3 +236,56 @@ button {
     background-color: #FB6B6B;
     border: none;
 }
+
+.button-init-disabled {
+    background-color: #E8E8E8;
+    color: #C0C0C0;
+}
+
+.input-min-zaps {
+    width: 246px;
+    height: 43px;
+    margin-top: 35px;
+    font-size: 14px;
+    color: #FB6B6B;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 0 10px;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+}
+
+.input-min-zaps::placeholder {
+    color: #ADADAD;
+}
+
+option {
+    width: 246px !important;
+}
+
+/*
+select:invalid {
+    color: #ADADAD;
+}
+
+/*select {
+    width: 246px;
+    height: 43px;
+    margin-top: 35px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #FB6B6B;
+    border-radius: 5px;
+    padding: 0 10px;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+}
+
+.deck-option {
+    font-size: 14px !important;
+    width: 246px !important;
+    color: #FB6B6B;
+}*/
+

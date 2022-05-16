@@ -6,13 +6,17 @@ import party from "../assets/images/party.png";
 import sad from "../assets/images/sad.png";
 
 
-function Result({ mistakes, minZaps, deckSize }) {
+function Result({ allAnswers, minZaps, deckSize }) {
 
+    const isWrong = answer => answer.includes("Não lembrei") || answer.includes("Quase não lembrei");
+    const countMistakes = allAnswers => allAnswers.filter(isWrong).length;
+
+    const mistakes = countMistakes(allAnswers);
     const maxMistakes = deckSize - minZaps;
 
     return (
         <div className="result-message">
-            { (mistakes > maxMistakes) ?
+            {(mistakes > maxMistakes) ?
                 <>
                     <div>
                         <img src={sad} alt="Sad emoji" />
@@ -25,20 +29,21 @@ function Result({ mistakes, minZaps, deckSize }) {
                         <img src={party} alt="Party emoji" />
                         <span>Parabéns!</span>
                     </div>
-                    <span>Você não esqueceu de nenhum flashcard!</span>
+                    <span>Você atingiu sua meta de {minZaps} zaps!</span>
                 </>
             }
         </div>
     );
 }
 
-function ButtonRestart({ setInitGame }) {
+function ButtonRestart({ setInitGame, setMinZaps }) {
     return (
-        <button onClick={() => setInitGame(false)}>REINICIAR RECALL</button>
+        <button onClick={() => { setInitGame(false); setMinZaps("") }}
+            className="button-restart">REINICIAR RECALL</button>
     );
 }
 
-export default function Game({ setInitGame }) {
+export default function Game({ setInitGame, minZaps, setMinZaps }) {
 
     const deckReact = 0;
 
@@ -79,10 +84,7 @@ export default function Game({ setInitGame }) {
 
     const [iconByUserAnswer, setIconByUserAnswer] = React.useState([]);
     const [allAnswers, setAllAnswers] = React.useState([]);
-    const [minZaps, setMinZaps] = React.useState(decks[deckReact].length);
 
-    const isWrong = answer => answer.includes("Não lembrei") || answer.includes("Quase não lembrei");
-    const countMistakes = allAnswers => allAnswers.filter(isWrong).length;
     const isAllAnswered = (allAnswers, deck) => allAnswers.length === deck.length;
 
     return (
@@ -93,19 +95,19 @@ export default function Game({ setInitGame }) {
                     <h1>ZapRecall</h1>
                 </div>
                 <Flashcards deck={decks[deckReact]} setIconByUserAnswer={setIconByUserAnswer}
-                setAllAnswers={setAllAnswers} allAnswers={allAnswers} />
+                    setAllAnswers={setAllAnswers} allAnswers={allAnswers} />
             </div>
             <div className="result">
-                { 
-                    isAllAnswered(allAnswers, decks[deckReact]) && 
-                    <Result mistakes={countMistakes(allAnswers)} minZaps={minZaps}
+                {
+                    isAllAnswered(allAnswers, decks[deckReact]) &&
+                    <Result allAnswers={allAnswers} minZaps={minZaps}
                         deckSize={decks[deckReact].length} />
                 }
                 <span>{iconByUserAnswer.length}/{decks[deckReact].length} CONCLUÍDOS</span>
                 <div className="icons-result">{iconByUserAnswer}</div>
                 {
                     isAllAnswered(allAnswers, decks[deckReact]) &&
-                    <ButtonRestart setInitGame={setInitGame} />
+                    <ButtonRestart setInitGame={setInitGame} setMinZaps={setMinZaps} />
                 }
             </div>
         </div>

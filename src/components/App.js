@@ -7,12 +7,13 @@ import "../assets/styles/style.css";
 export default function App() {
 
     const [initGame, setInitGame] = React.useState(false);
+    const [minZaps, setMinZaps] = React.useState("");
 
     return (
         <>
             { !initGame ?
-                <Home setInitGame={setInitGame} /> :
-                <Game setInitGame={setInitGame} />
+                <Home setInitGame={setInitGame} minZaps={minZaps} setMinZaps={setMinZaps} /> :
+                <Game setInitGame={setInitGame} minZaps={minZaps} setMinZaps={setMinZaps} />
             }
         </>
     );
