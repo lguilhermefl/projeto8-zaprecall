@@ -36,51 +36,18 @@ function Result({ allAnswers, minZaps, deckSize }) {
     );
 }
 
-function ButtonRestart({ setInitGame, setMinZaps }) {
+function ButtonRestart({ setInitGame, setMinZaps, setDeckChosen }) {
+
+    const restart = () => {setInitGame(false); setMinZaps(""); setDeckChosen("")};
+
     return (
-        <button onClick={() => { setInitGame(false); setMinZaps("") }}
+        <button onClick={restart}
             className="button-restart">REINICIAR RECALL</button>
     );
 }
 
-export default function Game({ setInitGame, minZaps, setMinZaps }) {
-
-    const deckReact = 0;
-
-    const decks = [
-        [{
-            question: "O que é JSX?",
-            answer: "Uma extensão de linguagem do JavaScript"
-        },
-        {
-            question: "O React é __",
-            answer: "Uma biblioteca JavaScript para construção de interfaces"
-        },
-        {
-            question: "Componentes devem iniciar com __",
-            answer: "Letra maiúscula"
-        },
-        {
-            question: "Podemos colocar __ dentro do JSX",
-            answer: "Expressões"
-        },
-        {
-            question: "O ReactDOM nos ajuda __",
-            answer: "Interagindo com a DOM para colocar componentes React na mesma"
-        },
-        {
-            question: "Usamos o npm para __",
-            answer: "Gerenciar os pacotes necessários e suas dependências"
-        },
-        {
-            question: "Usamos props para __",
-            answer: "Passar diferentes informações para componentes"
-        },
-        {
-            question: "Usamos estado (state) para __",
-            answer: "Dizer para o React quais informações quando atualizadas devem renderizar a tela novamente"
-        }],
-    ];
+export default function Game({ setInitGame, minZaps, setMinZaps, decks, deckChosen,
+    setDeckChosen }) {
 
     const [iconByUserAnswer, setIconByUserAnswer] = React.useState([]);
     const [allAnswers, setAllAnswers] = React.useState([]);
@@ -94,20 +61,21 @@ export default function Game({ setInitGame, minZaps, setMinZaps }) {
                     <img src={logo} alt="Logo" />
                     <h1>ZapRecall</h1>
                 </div>
-                <Flashcards deck={decks[deckReact]} setIconByUserAnswer={setIconByUserAnswer}
+                <Flashcards deck={decks[deckChosen]} setIconByUserAnswer={setIconByUserAnswer}
                     setAllAnswers={setAllAnswers} allAnswers={allAnswers} />
             </div>
             <div className="result">
                 {
-                    isAllAnswered(allAnswers, decks[deckReact]) &&
+                    isAllAnswered(allAnswers, decks[deckChosen]) &&
                     <Result allAnswers={allAnswers} minZaps={minZaps}
-                        deckSize={decks[deckReact].length} />
+                        deckSize={decks[deckChosen].length} />
                 }
-                <span>{iconByUserAnswer.length}/{decks[deckReact].length} CONCLUÍDOS</span>
+                <span>{iconByUserAnswer.length}/{decks[deckChosen].length} CONCLUÍDOS</span>
                 <div className="icons-result">{iconByUserAnswer}</div>
                 {
-                    isAllAnswered(allAnswers, decks[deckReact]) &&
-                    <ButtonRestart setInitGame={setInitGame} setMinZaps={setMinZaps} />
+                    isAllAnswered(allAnswers, decks[deckChosen]) &&
+                    <ButtonRestart setInitGame={setInitGame} setMinZaps={setMinZaps}
+                        setDeckChosen={setDeckChosen} />
                 }
             </div>
         </div>

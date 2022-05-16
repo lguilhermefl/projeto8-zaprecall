@@ -2,7 +2,6 @@ import React from "react";
 
 import arrow from "../assets/images/setinha.png";
 
-const FIVE_DECIMALS = 0.5;
 const ONE = 1;
 const wrong = 0;
 const almost = 1;
@@ -108,7 +107,7 @@ export default function Flashcards({ deck, setIconByUserAnswer, setAllAnswers })
     return (
         <div className="flashcards" >
             <ul>
-                {deck.sort(() => Math.random() - FIVE_DECIMALS).map((card, index) =>
+                {deck.map((card, index) =>
                     <Flashcard key={index} id={index + ONE} question={card.question}
                         answer={card.answer} setIconByUserAnswer={setIconByUserAnswer}
                         setAllAnswers={setAllAnswers} />)
