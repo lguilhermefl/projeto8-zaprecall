@@ -5,7 +5,7 @@ export default function Home({ setInitGame, minZaps, setMinZaps, decks, setDeckC
     deckChosen }) {
 
     const [deckSize, setDeckSize] = React.useState();
-    
+
     const minZapsValue = 1;
     const conditions = minZaps !== "" && !isNaN(minZaps) &&
         minZaps >= minZapsValue && minZaps <= deckSize && deckChosen !== "";
@@ -20,7 +20,7 @@ export default function Home({ setInitGame, minZaps, setMinZaps, decks, setDeckC
                 <option value="" disabled hidden>Escolha seu deck</option>
 
                 {decks.map((deck, index) => <option key={index} value={index}>
-                    {deck.deckName}</option>)}
+                    {deck.deckName} - {deck.cards.length} cards</option>)}
 
             </select>
             <input placeholder="Digite sua meta de Zaps..."
